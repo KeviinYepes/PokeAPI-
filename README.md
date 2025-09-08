@@ -27,10 +27,10 @@ Una pequeña API pokémon construida con **Flask**, ideal para explorar cómo tr
 2. Crea y activa un entorno virtual (recomendado):
    ````bash
      python -m venv env
-    source env/bin/activate  # Linux/Mac
-    env\Scripts\activate     # Windows
+     source env/bin/activate  # Linux/Mac
+     env\Scripts\activate     # Windows
    ````
 3. Instalar requirimientos:
    ````bash
-   pip install -r requirements.txt
+     pip install -r requirements.txt
    ````
