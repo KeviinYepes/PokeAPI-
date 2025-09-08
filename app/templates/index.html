@@ -1,12 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/src/style.css" rel="stylesheet">
     <title>Pokedex</title>
+    <style>
+            body {
+                    font-family: 'Arial', sans-serif; /* Define la fuente del texto en toda la página */
+                    background-color: #eee8e8; /* Establece un color de fondo gris claro */
+                    margin: 0; /* Elimina el margen por defecto del navegador */
+                    padding: 20px; /* Añade un espacio interno alrededor del contenido */
+                }
+                h1 {
+                    text-align: center; /* Centra el título horizontalmente */
+                    color: #ff0000; /* Pone el texto en color rojo */
+                    text-shadow: 2px 2px 0 #102099; /* Aplica una sombra azul al texto para resaltar */
+                }
+                .pokedex-container {
+                    display: grid; /* Usa un diseño de cuadrícula para organizar elementos */
+                    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Crea columnas flexibles con mínimo 150px */
+                    gap: 15px; /* Deja un espacio de 15px entre cada tarjeta */
+                    max-width: 1200px; /* Limita el ancho máximo del contenedor */
+                    margin: 0 auto; /* Centra el contenedor horizontalmente */
+                }
+                .pokemon {
+                    background-color: white; /* Fondo blanco para cada tarjeta Pokémon */
+                    border-radius: 10px; /* Bordes redondeados */
+                    padding: 10px; /* Espaciado interno dentro de la tarjeta */
+                    text-align: center; /* Centra el contenido de texto e imágenes */
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil alrededor de la tarjeta */
+                    transition: transform 0.2s; /* Suaviza la animación cuando se transforma */
+                }
+                .pokemon:hover {
+                    transform: translateY(-5px); /* Levanta la tarjeta al pasar el mouse */
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Aumenta la sombra para dar efecto 3D */
+                }
+                .pokemon h3 {
+                    margin: 10px 0 5px; /* Márgenes alrededor del nombre del Pokémon */
+                    color: #3b4cca; /* Texto en color azul característico de Pokémon */
+                    text-transform: capitalize; /* Convierte la primera letra en mayúscula */
+                    font-size: 16px; /* Define el tamaño de la fuente */
+                }
+                .pokemon img {
+                    image-rendering: pixelated; /* Hace que la imagen se vea en estilo "pixel art" */
+                    background: #f0f0f0; /* Fondo gris claro detrás de la imagen */
+                    border-radius: 50%; /* Convierte el fondo en forma circular */
+                    padding: 5px; /* Espacio interno alrededor de la imagen */
+                }
+                .pokemon-id {
+                    color: #888; /* Texto en gris para menor importancia */
+                    font-size: 12px; /* Tamaño de fuente pequeño */
+                    margin-top: 5px; /* Espacio superior para separarlo del nombre o imagen */
+                }
+    </style>
 </head>
 <body>
-    <h1> {{ data }}</h1>
+    <h1>Pokédex</h1>
+    <div class="pokedex-container">
+        {% for item in data %}   
+            {% set pokemon_id = item.Img.split('/')[-2] %}
+            <div class="pokemon">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon_id }}.png" 
+                     alt="{{ item.Pokemon }}" 
+                     width="96" 
+                     height="96">
+                <h3>{{ item.Pokemon }}</h3>
+                <div class="pokemon-id">#{{ pokemon_id }}</div>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>
